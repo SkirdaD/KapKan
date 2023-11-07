@@ -18,8 +18,8 @@ class GameFragmentLogicHolder(
         widgets.hanjaTextView.text = when (stateHolder.state) {
             StateHolder.Type.HANJA -> stateHolder.hanja.syllable
             StateHolder.Type.HANJA_SOUND -> stateHolder.hanja.koreanSound
-            StateHolder.Type.NATIVE_NUMBERS -> stateHolder.number.first.toString()
-            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.second
+            StateHolder.Type.NATIVE_NUMBERS -> stateHolder.number.digit.toString()//first.toString()
+            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.nativeKoreanName.trim()//second
         }
     }
 
@@ -28,8 +28,8 @@ class GameFragmentLogicHolder(
         val answer = when (stateHolder.state) {
             StateHolder.Type.HANJA -> stateHolder.hanja.koreanSound.trim()
             StateHolder.Type.HANJA_SOUND -> stateHolder.hanja.syllable.trim()
-            StateHolder.Type.NATIVE_NUMBERS -> stateHolder.number.second.trim()
-            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.first.toString()
+            StateHolder.Type.NATIVE_NUMBERS -> stateHolder.number.nativeKoreanName.trim()//second.trim()
+            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.digit.toString()//first.toString()
         }
         if (isAnswerRight(answer)) {
             onSuccessfulAnswer()
@@ -164,10 +164,10 @@ class GameFragmentLogicHolder(
     }
 
     private fun showNumber() {
-        widgets.hanjaTextView.text = stateHolder.number.first.toString()
+        widgets.hanjaTextView.text = stateHolder.number.digit.toString()//first.toString()
     }
 
     private fun showNumberSound() {
-        widgets.hanjaTextView.text = stateHolder.number.second
+        widgets.hanjaTextView.text = stateHolder.number.nativeKoreanName//second
     }
 }

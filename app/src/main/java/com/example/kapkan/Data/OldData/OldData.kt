@@ -1,6 +1,10 @@
-package com.example.kapkan.Data
+package com.example.kapkan.Data.OldData
 
-class Data {
+import com.example.kapkan.Data.Hangul
+import com.example.kapkan.Data.Hanja
+import com.example.kapkan.Data.Russian
+
+class OldData {
 
     data class HanjaRecord(
         val syllable: Hanja,
@@ -219,8 +223,3 @@ class Data {
         HanjaRecord("音", "음", "소리", listOf("звук", "новости", "произношение", "разговор")),
     )
 }
-
-typealias Hangul = String
-typealias Hanja = String
-typealias Russian = String
-typealias English = String
