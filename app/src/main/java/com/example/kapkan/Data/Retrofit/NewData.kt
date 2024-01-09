@@ -1,10 +1,9 @@
 package com.example.kapkan.Data.Retrofit
 
 import com.example.kapkan.Data.OldData.OldData
+import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import java.io.IOException
-import java.util.concurrent.Executors
 
 class NewData {
 
@@ -49,7 +48,7 @@ class NewData {
         val service = retrofit.create(NumbersAPI::class.java)
         val call = service.getAllNumbers()
 
-        return call.enqueue(new Ca)//execute()
+        return call.execute()
     }
 
     fun getNumbersList(): NumbersData {
