@@ -22,6 +22,14 @@ class GameFragment(private val gameOption: Values.GameOptions) : Fragment() {
 
         val widgets = GameFragmentWidgetHolder(view)
         val logicHolder = GameFragmentLogicHolder(widgets, gameOption)
+//        val data = NewData()
+//
+//        runBlocking {
+//            val responseData = withContext(Dispatchers.IO) {
+//                RetrofitClient.apiService.getAllNumbers()
+//            }
+//            data.allNumbers = responseData;
+//        }
 
         logicHolder.initTextView()
 

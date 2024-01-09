@@ -1,8 +1,9 @@
 package com.example.kapkan.Data.OldData
 
-import com.example.kapkan.Data.Hangul
-import com.example.kapkan.Data.Hanja
-import com.example.kapkan.Data.Russian
+import com.example.kapkan.Data.Retrofit.Hangul
+import com.example.kapkan.Data.Retrofit.Hanja
+import com.example.kapkan.Data.Retrofit.NumberData
+import com.example.kapkan.Data.Retrofit.Russian
 
 class OldData {
 
@@ -28,6 +29,10 @@ class OldData {
         SIZE, COLORS, RELATIVES, COUNTRIES, SHAPES, LANGUAGES, DIRECTIONS, SENSES, BODYPARTS, ORGANS,
         CITIES, SEOUL, MOUNTAINS
     }
+
+    val numbers: List<NumberData> = listOf(
+        NumberData(99999, "не получилось", "ничего")
+    )
 
     val koreanNumbers = mapOf(
         1 to "하나",

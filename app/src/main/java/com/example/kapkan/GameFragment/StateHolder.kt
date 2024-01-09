@@ -1,14 +1,16 @@
 package com.example.kapkan.GameFragment
 
-import com.example.kapkan.Data.NewData
 import com.example.kapkan.Data.OldData.OldData
-import com.example.kapkan.Data.Retrofit.NumberRecord
+import com.example.kapkan.Data.Retrofit.NewData
+import com.example.kapkan.Data.Retrofit.NumberData
 import com.example.kapkan.Values
 import kotlin.random.Random
 
 class StateHolder(gameOptions: Values.GameOptions) {
     private val data = OldData()
     private val newData = NewData()
+
+    private var allNumbersList = newData.getNumbersList().numbers
 
     var hintState = HintState.NOT_SHOWN
 
@@ -55,7 +57,7 @@ class StateHolder(gameOptions: Values.GameOptions) {
 //        return Pair(resultInt, resultString)
 //    }
 
-    private fun getRandomNumber(): NumberRecord {
+    private fun getRandomNumber(): NumberData {
         val numberLD = Random.nextInt(1, 10)
 //        val numberStringLD = newData.allNumbers[numberLD]
         //val numberStringLD = data.koreanNumbers[numberLD]
@@ -69,7 +71,7 @@ class StateHolder(gameOptions: Values.GameOptions) {
 //        val resultInt = numberFD + numberLD
 //        val resultString = numberStringFD.toString() + " " + numberStringLD.toString()
 
-        return newData.allNumbers[numberLD]
+        return allNumbersList[numberLD]
     }
 
 
