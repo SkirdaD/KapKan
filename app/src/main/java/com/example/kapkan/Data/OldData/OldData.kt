@@ -31,7 +31,7 @@ class OldData {
     }
 
     val numbers: List<NumberData> = listOf(
-        NumberData(99999, "не получилось", "ничего")
+        NumberData(99999, "olddata", "ничего")
     )
 
     val koreanNumbers = mapOf(

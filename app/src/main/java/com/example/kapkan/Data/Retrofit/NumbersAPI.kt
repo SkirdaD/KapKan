@@ -4,6 +4,6 @@ import retrofit2.Call
 import retrofit2.http.GET
 
 interface NumbersAPI {
-    @GET("blob/master/stringData")
+    @GET("1")//blob/master/stringData")
     fun getAllNumbers(): Call<List<NumberData>>//NumbersData>
 }

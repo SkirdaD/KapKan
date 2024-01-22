@@ -9,11 +9,14 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NewData {
     val oldData = OldData()
-    var dataList = getNumbersData()
+    var dataList = oldData.numbers//getNumbersData()
+    init {
+        getNumbersData()
+    }
 
-    fun getNumbersData(): List<NumberData> {//callback: (NumbersData) -> Unit) {
+    fun getNumbersData(){//: List<NumberData> {//callback: (NumbersData) -> Unit) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://github.com/russabit/KapKan/")
+            .baseUrl("https://dummyjson.com/products/")//https://github.com/russabit/KapKan/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -28,6 +31,7 @@ class NewData {
             ) {
                 if (response.isSuccessful) {
                     dataList = response.body()!!
+                    println("kKKKKKKKKKKKKKKKKK")
 //                        if (dataList != null) {
 ////                            callback(dataList)
 //                        }
@@ -42,7 +46,8 @@ class NewData {
                 // обработка ошибок
             }
         })
-        return dataList
+//        Thread.sleep(10000)
+//        return dataList
     }
 }
 

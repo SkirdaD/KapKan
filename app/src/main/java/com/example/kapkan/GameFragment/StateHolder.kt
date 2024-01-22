@@ -9,7 +9,7 @@ import kotlin.random.Random
 class StateHolder(gameOptions: Values.GameOptions) {
     private val data = OldData()
     private val newData = NewData()
-    var n = newData.dataList
+    //var n = newData.dataList
 
     var hintState = HintState.NOT_SHOWN
 
@@ -76,7 +76,7 @@ class StateHolder(gameOptions: Values.GameOptions) {
 //        val resultInt = numberFD + numberLD
 //        val resultString = numberStringFD.toString() + " " + numberStringLD.toString()
 
-        return n[numberLD]
+        return newData.dataList[0]//numberLD]
     }
 
 
