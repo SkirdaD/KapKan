@@ -9,32 +9,42 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NewData {
     val oldData = OldData()
+    var dataList = getNumbersData()
 
-    fun getNumbersData(callback: (NumbersData) -> Unit) {
+    fun getNumbersData(): List<NumberData> {//callback: (NumbersData) -> Unit) {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://github.com/russabit/KapKan/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
-        retrofit.create(NumbersAPI::class.java)
-            .getAllNumbers()
-            .enqueue(object : Callback<NumbersData> {
-                override fun onResponse(call: Call<NumbersData>, response: Response<NumbersData>) {
-                    if (response.isSuccessful) {
-                        val dataList = response.body()
-                        if (dataList != null) {
-                            callback(dataList)
-                        }
-                    } else {
-                        // обработка ошибок
-                    }
-                }
+        val numbersAPI = retrofit.create(NumbersAPI::class.java)
+        val call: Call<List<NumberData>> = numbersAPI.getAllNumbers()
 
-                override fun onFailure(call: Call<NumbersData>, t: Throwable) {
-                    // обработка ошибок
+
+        call.enqueue(object : Callback<List<NumberData>> {
+            override fun onResponse(
+                call: Call<List<NumberData>>,
+                response: Response<List<NumberData>>
+            ) {
+                if (response.isSuccessful) {
+                    dataList = response.body()!!
+//                        if (dataList != null) {
+////                            callback(dataList)
+//                        }
+//                    } else {
+//                        // обработка ошибок
+//                    }
                 }
-            })
+            }
+
+            override fun onFailure(call: Call<List<NumberData>>, t: Throwable) {
+               dataList = oldData.numbers
+                // обработка ошибок
+            }
+        })
+        return dataList
     }
+}
 
 
 //    fun getNumbersData(): NumbersData {
@@ -139,7 +149,7 @@ class NewData {
 //        }
 //        return dataList
 //    }
-}
+
 
 typealias Hangul = String
 typealias Hanja = String

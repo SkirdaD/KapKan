@@ -9,8 +9,7 @@ import kotlin.random.Random
 class StateHolder(gameOptions: Values.GameOptions) {
     private val data = OldData()
     private val newData = NewData()
-    var n = data.numbers
-//    var numssss = newData.getNumbersData { callback }
+    var n = newData.dataList
 
     var hintState = HintState.NOT_SHOWN
 
@@ -28,14 +27,11 @@ class StateHolder(gameOptions: Values.GameOptions) {
     var number = getRandomNumber()
     var hanja = getRandomHanja()
 
-//    private val callback: (NumbersData) -> Unit = {
-//
-//    }
 
-    fun getN() {
-        newData.getNumbersData { dataList ->
-            n = dataList.numbers }
-    }
+//    fun getN() {
+//        newData.getNumbersData { dataList ->
+//            n = dataList.numbers }
+//    }
 
     fun updateNumber() {
         number = getRandomNumber()
@@ -68,7 +64,6 @@ class StateHolder(gameOptions: Values.GameOptions) {
 
     private fun getRandomNumber(): NumberData {
         val numberLD = Random.nextInt(1, 10)
-        getN()
 //        val numberStringLD = newData.allNumbers[numberLD]
         //val numberStringLD = data.koreanNumbers[numberLD]
 
