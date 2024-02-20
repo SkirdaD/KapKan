@@ -1,5 +1,6 @@
 package com.example.kapkan.Data.Retrofit
 
+import androidx.lifecycle.MutableLiveData
 import com.example.kapkan.Data.OldData.OldData
 import retrofit2.Call
 import retrofit2.Callback
@@ -10,13 +11,13 @@ import retrofit2.converter.gson.GsonConverterFactory
 class NewData {
     val oldData = OldData()
     var dataList = oldData.numbers//getNumbersData()
-    init {
-        getNumbersData()
-    }
+//    init {
+//        getNumbersData()
+//    }
 
-    fun getNumbersData(){//: List<NumberData> {//callback: (NumbersData) -> Unit) {
+    fun fetchNumbersData(kapkanLiveData: MutableLiveData<List<NumberData>>) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://dummyjson.com/products/")//https://github.com/russabit/KapKan/")
+            .baseUrl("https://github.com/russabit/KapKan/")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -30,7 +31,7 @@ class NewData {
                 response: Response<List<NumberData>>
             ) {
                 if (response.isSuccessful) {
-                    dataList = response.body()!!
+                    kapkanLiveData.postValue(response.body()!!)
                     println("kKKKKKKKKKKKKKKKKK")
 //                        if (dataList != null) {
 ////                            callback(dataList)
@@ -42,7 +43,7 @@ class NewData {
             }
 
             override fun onFailure(call: Call<List<NumberData>>, t: Throwable) {
-               dataList = oldData.numbers
+                kapkanLiveData.postValue(oldData.numbers)
                 // обработка ошибок
             }
         })

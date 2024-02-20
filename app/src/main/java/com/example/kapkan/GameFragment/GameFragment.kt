@@ -5,15 +5,38 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import com.example.kapkan.Data.Retrofit.NewData
+import com.example.kapkan.Data.Retrofit.NumberData
 import com.example.kapkan.R
 import com.example.kapkan.Values
 
-class GameFragment(private val gameOption: Values.GameOptions) : Fragment() {
+class GameFragment : Fragment() {
+
+    companion object {
+        fun newInstance(gameOptions: Values.GameOptions): GameFragment {
+            val fragment = GameFragment()
+            val args = Bundle()
+            args.putString("gameOption", gameOptions.name)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    val kapkanLiveData = MutableLiveData<List<NumberData>>()
+    val data = NewData()
+
+    private lateinit var gameOptions: Values.GameOptions
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
+        gameOptions = Values.GameOptions.valueOf(
+            arguments?.getString("gameOption") ?: Values.GameOptions.OPTION_1.name
+        )
+
         return inflater.inflate(R.layout.game_fragment, container, false)
     }
 
@@ -21,22 +44,24 @@ class GameFragment(private val gameOption: Values.GameOptions) : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val widgets = GameFragmentWidgetHolder(view)
-        val logicHolder = GameFragmentLogicHolder(widgets, gameOption)
-//        val data = NewData()
-//
-//        runBlocking {
-//            val responseData = withContext(Dispatchers.IO) {
-//                RetrofitClient.apiService.getAllNumbers()
-//            }
-//            data.allNumbers = responseData;
-//        }
+        data.fetchNumbersData(kapkanLiveData)
 
-        logicHolder.initTextView()
+        kapkanLiveData.observe(viewLifecycleOwner) {
 
-        widgets.submitButton.setOnClickListener(logicHolder::submitButtonClickListener)
+            widgets.progressBar.visibility = View.GONE
 
-        widgets.answerEditText.setErrorIconOnClickListener(logicHolder::errorIconClickListener)
+            data.dataList = it
 
-        widgets.fabButton.setOnClickListener(logicHolder::fabButtonClickListener)
+            val logicHolder = GameFragmentLogicHolder(widgets, gameOptions)
+
+            logicHolder.initTextView()
+
+            widgets.submitButton.setOnClickListener(logicHolder::submitButtonClickListener)
+
+            widgets.answerEditText.setErrorIconOnClickListener(logicHolder::errorIconClickListener)
+
+            widgets.fabButton.setOnClickListener(logicHolder::fabButtonClickListener)
+        }
+
     }
 }

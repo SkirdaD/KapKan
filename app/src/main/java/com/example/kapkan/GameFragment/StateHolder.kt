@@ -9,7 +9,6 @@ import kotlin.random.Random
 class StateHolder(gameOptions: Values.GameOptions) {
     private val data = OldData()
     private val newData = NewData()
-    //var n = newData.dataList
 
     var hintState = HintState.NOT_SHOWN
 
@@ -26,12 +25,6 @@ class StateHolder(gameOptions: Values.GameOptions) {
     }
     var number = getRandomNumber()
     var hanja = getRandomHanja()
-
-
-//    fun getN() {
-//        newData.getNumbersData { dataList ->
-//            n = dataList.numbers }
-//    }
 
     fun updateNumber() {
         number = getRandomNumber()

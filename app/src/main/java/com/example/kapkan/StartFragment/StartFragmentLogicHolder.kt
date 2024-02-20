@@ -40,7 +40,7 @@ class StartFragmentLogicHolder(
     fun showGameFragment(gameOption: Values.GameOptions) {
         fragmentManager
             .beginTransaction()
-            .replace(R.id.fragment, GameFragment(gameOption))
+            .replace(R.id.fragment, GameFragment.newInstance(gameOption))
             .addToBackStack(null)
             .commit()
     }
