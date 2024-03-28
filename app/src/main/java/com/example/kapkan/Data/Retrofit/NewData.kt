@@ -10,10 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NewData {
     val oldData = OldData()
-    var dataList = oldData.numbers//getNumbersData()
-//    init {
-//        getNumbersData()
-//    }
+    var dataList  = oldData.numbers
 
     fun fetchNumbersData(kapkanLiveData: MutableLiveData<List<NumberData>>) {
         val retrofit = Retrofit.Builder()
@@ -31,12 +28,14 @@ class NewData {
                 response: Response<List<NumberData>>
             ) {
                 if (response.isSuccessful) {
+                    println("удачный запрос")
                     kapkanLiveData.postValue(response.body()!!)
-                    println("kKKKKKKKKKKKKKKKKK")
 //                        if (dataList != null) {
 ////                            callback(dataList)
 //                        }
-//                    } else {
+                    } else {
+                    println("неудачный запрос")
+
 //                        // обработка ошибок
 //                    }
                 }
@@ -47,115 +46,8 @@ class NewData {
                 // обработка ошибок
             }
         })
-//        Thread.sleep(10000)
-//        return dataList
     }
 }
-
-
-//    fun getNumbersData(): NumbersData {
-//
-//        var dataList = NumbersData(oldData.numbers)
-//
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl("https://github.com/russabit/KapKan/")
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//
-//
-//        val callback = object : Callback<NumbersData> {
-//
-//            override fun onResponse(
-//                call: Call<NumbersData>,
-//                response: Response<NumbersData>
-//            ) {
-//                if (response.isSuccessful) {
-//                    dataList = response.body()!!
-//                    println("response " + response.body())
-//                } else {
-//                    println("response code " + response.code())
-//                }
-//            }
-//
-//            override fun onFailure(call: Call<NumbersData>, t: Throwable) {
-//                //dataList = NumbersData(oldData.numbers)
-//                println("failure " + t)
-//            }
-//        }
-//
-//        retrofit.create(NumbersAPI::class.java)
-//            .getAllNumbers()
-//            .enqueue(callback)
-//
-//        return dataList
-//    }
-
-// ПОПЫТКА №1
-//    val executor = Executors.newSingleThreadExecutor()
-//    val retrofit = Retrofit.Builder()
-//        .baseUrl("https://github.com/russabit/KapKan/")
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .build()
-//
-//    fun getNumbersList(): NumbersData {
-//        val apiService = retrofit.create(NumbersAPI::class.java)
-//        val request = apiService.getAllNumbers()
-//
-//        var dataList = NumbersData(oldData.numbers)
-//
-//        executor.execute {
-//            try {
-//                val response = request.execute()
-//                if (response.isSuccessful) {
-//                    dataList = response.body()!!
-//                    // Обработка данных здесь
-//                } else {
-//                    // Обработка ошибки
-//                }
-//            } catch (e: IOException) {
-//                e.printStackTrace()
-//                // Обработка ошибки
-//            }
-//        }
-//        return dataList
-//    }
-
-//ПОПЫТКА №2
-//    private fun getDataFromApi(): Response<NumbersData> {
-//        val retrofit = Retrofit.Builder()
-//            .baseUrl("https://github.com/russabit/KapKan/")
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//
-//        val service = retrofit.create(NumbersAPI::class.java)
-//        val call = service.getAllNumbers()
-//
-//        return call.execute()
-//    }
-//
-//    fun getNumbersList(): NumbersData {
-//        val dataList: NumbersData
-//        val response = getDataFromApi()
-//
-//        if (response.isSuccessful) {
-//            dataList = response.body()!!
-//
-////            if (dataList != null) {
-////                for (data in dataList) {
-////                    // далее можно обрабатывать каждый элемент списка data
-////                }
-////            } else {
-////                // Обработка случая, когда данные null
-////            }
-//        } else {
-//            // Обработка ошибочного ответа
-//            val errorBody = response.errorBody()?.string()
-//            dataList = NumbersData(oldData.numbers)
-//            // Другие действия при ошибке
-//        }
-//        return dataList
-//    }
-
 
 typealias Hangul = String
 typealias Hanja = String
