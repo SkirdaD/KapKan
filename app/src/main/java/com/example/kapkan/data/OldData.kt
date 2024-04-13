@@ -1,10 +1,4 @@
-package com.example.kapkan.Data.OldData
-
-import com.example.kapkan.Data.Retrofit.Hangul
-import com.example.kapkan.Data.Retrofit.Hanja
-import com.example.kapkan.Data.Retrofit.NumberData
-import com.example.kapkan.Data.Retrofit.NumbersData
-import com.example.kapkan.Data.Retrofit.Russian
+package com.example.kapkan.data
 
 class OldData {
 
@@ -31,8 +25,8 @@ class OldData {
         CITIES, SEOUL, MOUNTAINS
     }
 
-    val n1 = NumberData(9, "ff", "fff")
-    val n2 = NumberData(8, "dd", "ddd")
+    val n1 = DigitData(9, "ff", "fff")
+    val n2 = DigitData(8, "dd", "ddd")
     val numbers = NumbersData(arrayListOf(n1, n2))
 
 

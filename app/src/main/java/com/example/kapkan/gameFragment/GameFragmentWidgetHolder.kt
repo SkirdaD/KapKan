@@ -1,4 +1,4 @@
-package com.example.kapkan.GameFragment
+package com.example.kapkan.gameFragment
 
 import android.view.View
 import android.widget.Button

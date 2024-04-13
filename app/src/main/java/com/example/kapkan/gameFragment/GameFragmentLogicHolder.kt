@@ -1,9 +1,9 @@
-package com.example.kapkan.GameFragment
+package com.example.kapkan.gameFragment
 
 import android.view.View
-import com.example.kapkan.Data.OldData.OldData
-import com.example.kapkan.Data.Retrofit.NewData
 import com.example.kapkan.Values
+import com.example.kapkan.data.NewData
+import com.example.kapkan.data.OldData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -22,8 +22,8 @@ class GameFragmentLogicHolder(
         widgets.hanjaTextView.text = when (stateHolder.state) {
             StateHolder.Type.HANJA -> stateHolder.hanja.syllable
             StateHolder.Type.HANJA_SOUND -> stateHolder.hanja.koreanSound
-            StateHolder.Type.NATIVE_NUMBERS -> stateHolder.number.digit.toString()//first.toString()
-            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.nativeKoreanName.trim()//second
+            StateHolder.Type.NATIVE_NUMBERS -> stateHolder.number.first.toString()
+            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.second.trim()//nativeKoreanName.trim()//second
         }
     }
 
@@ -32,8 +32,8 @@ class GameFragmentLogicHolder(
         val answer = when (stateHolder.state) {
             StateHolder.Type.HANJA -> stateHolder.hanja.koreanSound.trim()
             StateHolder.Type.HANJA_SOUND -> stateHolder.hanja.syllable.trim()
-            StateHolder.Type.NATIVE_NUMBERS -> stateHolder.number.nativeKoreanName.trim()//second.trim()
-            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.digit.toString()//first.toString()
+            StateHolder.Type.NATIVE_NUMBERS -> stateHolder.number.second.trim()
+            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.first.toString()
         }
         if (isAnswerRight(answer)) {
             onSuccessfulAnswer()
@@ -109,7 +109,8 @@ class GameFragmentLogicHolder(
         resetHints()
         initTextView()
     }
-    private fun updateTask(){
+
+    private fun updateTask() {
         when (stateHolder.state) {
             StateHolder.Type.HANJA -> stateHolder.updateHanja()
             StateHolder.Type.HANJA_SOUND -> stateHolder.updateHanja()
@@ -168,10 +169,10 @@ class GameFragmentLogicHolder(
     }
 
     private fun showNumber() {
-        widgets.hanjaTextView.text = stateHolder.number.digit.toString()//first.toString()
+        widgets.hanjaTextView.text = stateHolder.number.first.toString()
     }
 
     private fun showNumberSound() {
-        widgets.hanjaTextView.text = stateHolder.number.nativeKoreanName//second
+        widgets.hanjaTextView.text = stateHolder.number.second.trim()
     }
 }

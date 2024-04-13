@@ -1,7 +1,7 @@
 package com.example.kapkan
 
 import androidx.appcompat.app.AppCompatActivity
-import com.example.kapkan.StartFragment.StartFragment
+import com.example.kapkan.startFragment.StartFragment
 
 class MainActivityLogicHolder(context: AppCompatActivity) {
 

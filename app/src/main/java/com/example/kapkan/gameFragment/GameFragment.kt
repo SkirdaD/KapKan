@@ -1,4 +1,4 @@
-package com.example.kapkan.GameFragment
+package com.example.kapkan.gameFragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,11 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
-import com.example.kapkan.Data.OldData.OldData
-import com.example.kapkan.Data.Retrofit.NewData
-import com.example.kapkan.Data.Retrofit.NumbersData
 import com.example.kapkan.R
 import com.example.kapkan.Values
+import com.example.kapkan.data.NewData
+import com.example.kapkan.data.NumbersData
+import com.example.kapkan.data.OldData
 
 class GameFragment : Fragment() {
 
@@ -24,9 +24,9 @@ class GameFragment : Fragment() {
         }
     }
 
-    val oldData = OldData()
-    val newData = NewData(oldData)
-    val kapkanLiveData = MutableLiveData<NumbersData>()
+    private val oldData = OldData()
+    private val newData = NewData(oldData)
+    private val liveData = MutableLiveData<NumbersData>()
 
     private lateinit var gameOptions: Values.GameOptions
 
@@ -47,12 +47,11 @@ class GameFragment : Fragment() {
 
         val widgets = GameFragmentWidgetHolder(view)
 
-        newData.fetchNumbersData(kapkanLiveData)
+        newData.fetchNumbersData(liveData)
 
-        kapkanLiveData.observe(viewLifecycleOwner) {
+        liveData.observe(viewLifecycleOwner) {
 
             widgets.progressBar.visibility = View.GONE
-
 
             newData.dataList = it
 

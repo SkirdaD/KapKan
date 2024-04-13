@@ -1,22 +1,22 @@
-package com.example.kapkan.Data.Retrofit
+package com.example.kapkan.data
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.kapkan.Data.OldData.OldData
+import com.example.kapkan.Values
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class NewData (oldData: OldData) {
+class NewData(oldData: OldData) {
     var data = oldData
     var dataList = oldData.numbers
 
     fun fetchNumbersData(kapkanLiveData: MutableLiveData<NumbersData>) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://raw.githubusercontent.com/russabit/")
-            .addConverterFactory(GsonConverterFactory.create())//GsonBuilder().setLenient().create()))
+            .baseUrl(Values.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
 
         val numbersAPI = retrofit.create(NumbersAPI::class.java)
@@ -31,21 +31,14 @@ class NewData (oldData: OldData) {
                 if (response.isSuccessful) {
                     println("удачный запрос")
                     kapkanLiveData.postValue(response.body()!!)
-//                        if (dataList != null) {
-////                            callback(dataList)
-//                        }
-                    } else {
+                } else {
                     println("неудачный запрос")
-
-//                        // обработка ошибок
-//                    }
                 }
             }
 
             override fun onFailure(call: Call<NumbersData>, t: Throwable) {
                 kapkanLiveData.postValue(data.numbers)
                 t.message?.let { Log.e("ВОТ ОШИБКА", it) }
-                // обработка ошибок
             }
         })
     }

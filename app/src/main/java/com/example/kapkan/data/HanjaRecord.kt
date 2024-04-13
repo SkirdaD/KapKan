@@ -1,4 +1,4 @@
-package com.example.kapkan.Data.Retrofit
+package com.example.kapkan.data
 
 
 data class HanjaRecord(

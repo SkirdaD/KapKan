@@ -1,4 +1,4 @@
-package com.example.kapkan.Data.Retrofit
+package com.example.kapkan.data
 
 import retrofit2.Call
 import retrofit2.http.GET

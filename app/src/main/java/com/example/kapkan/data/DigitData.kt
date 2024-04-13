@@ -1,6 +1,6 @@
-package com.example.kapkan.Data.Retrofit
+package com.example.kapkan.data
 
-data class NumberData(
+data class DigitData(
     val digit: Int,
     val nativeKoreanName: Hanja,
     val sinoKoreanName: Hangul
