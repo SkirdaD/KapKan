@@ -1,5 +1,6 @@
 package com.example.kapkan.Data.Retrofit
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.kapkan.Data.OldData.OldData
 import retrofit2.Call
@@ -8,24 +9,24 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class NewData {
-    val oldData = OldData()
-    var dataList  = oldData.numbers
+class NewData (oldData: OldData) {
+    var data = oldData
+    var dataList = oldData.numbers
 
-    fun fetchNumbersData(kapkanLiveData: MutableLiveData<List<NumberData>>) {
+    fun fetchNumbersData(kapkanLiveData: MutableLiveData<NumbersData>) {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://github.com/russabit/KapKan/")
-            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://raw.githubusercontent.com/russabit/")
+            .addConverterFactory(GsonConverterFactory.create())//GsonBuilder().setLenient().create()))
             .build()
 
         val numbersAPI = retrofit.create(NumbersAPI::class.java)
-        val call: Call<List<NumberData>> = numbersAPI.getAllNumbers()
+        val call: Call<NumbersData> = numbersAPI.getAllNumbers()
 
 
-        call.enqueue(object : Callback<List<NumberData>> {
+        call.enqueue(object : Callback<NumbersData> {
             override fun onResponse(
-                call: Call<List<NumberData>>,
-                response: Response<List<NumberData>>
+                call: Call<NumbersData>,
+                response: Response<NumbersData>
             ) {
                 if (response.isSuccessful) {
                     println("удачный запрос")
@@ -41,8 +42,9 @@ class NewData {
                 }
             }
 
-            override fun onFailure(call: Call<List<NumberData>>, t: Throwable) {
-                kapkanLiveData.postValue(oldData.numbers)
+            override fun onFailure(call: Call<NumbersData>, t: Throwable) {
+                kapkanLiveData.postValue(data.numbers)
+                t.message?.let { Log.e("ВОТ ОШИБКА", it) }
                 // обработка ошибок
             }
         })

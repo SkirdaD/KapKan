@@ -6,9 +6,11 @@ import com.example.kapkan.Data.Retrofit.NumberData
 import com.example.kapkan.Values
 import kotlin.random.Random
 
-class StateHolder(gameOptions: Values.GameOptions) {
-    private val data = OldData()
-    private val newData = NewData()
+class StateHolder(
+    gameOptions: Values.GameOptions,
+    private val newData: NewData,
+    private val oldData: OldData
+) {
 
     var hintState = HintState.NOT_SHOWN
 
@@ -18,10 +20,10 @@ class StateHolder(gameOptions: Values.GameOptions) {
     var numberOfWins = 0
 
     var state = when (gameOptions) {
-        Values.GameOptions.OPTION_1 -> Type.HANJA
-        Values.GameOptions.OPTION_2 -> Type.HANJA_SOUND
-        Values.GameOptions.OPTION_3 -> Type.NATIVE_NUMBERS
-        Values.GameOptions.OPTION_4 -> Type.NUMBER_SOUND
+        Values.GameOptions.HANJA_TO_TRANSCRIPTION -> Type.HANJA
+        Values.GameOptions.TRANSCRIPTION_TO_HANJA -> Type.HANJA_SOUND
+        Values.GameOptions.NUMBER_TO_TRANSCRIPTION -> Type.NATIVE_NUMBERS
+        Values.GameOptions.TRANSCRIPTION_NUMBER -> Type.NUMBER_SOUND
     }
     var number = getRandomNumber()
     var hanja = getRandomHanja()
@@ -42,12 +44,12 @@ class StateHolder(gameOptions: Values.GameOptions) {
 //        // last digit
 //        val numberLD = Random.nextInt(1, 10)
 //        val numberStringLD = newData.getAllNumbers(numberLD)
-//        //val numberStringLD = data.koreanNumbers[numberLD]
+//        //val numberStringLD = oldData.koreanNumbers[numberLD]
 //
 //        // first digit
 //
 //        val numberFD = Random.nextInt(1, 10) * 10
-//        val numberStringFD = data.koreanNumbers[numberFD]
+//        val numberStringFD = oldData.koreanNumbers[numberFD]
 //
 //        val resultInt = numberFD + numberLD
 //        val resultString = numberStringFD.toString() + " " + numberStringLD.toString()
@@ -57,24 +59,24 @@ class StateHolder(gameOptions: Values.GameOptions) {
 
     private fun getRandomNumber(): NumberData {
         val numberLD = Random.nextInt(1, 10)
-//        val numberStringLD = newData.allNumbers[numberLD]
-        //val numberStringLD = data.koreanNumbers[numberLD]
+//        val numberStringLD = newData.dataList.numbers[numberLD]
+        //val numberStringLD = oldData.koreanNumbers[numberLD]
 
         // first digit
-
+//
 //        val numberFD = Random.nextInt(1, 10) * 10
 //        val numberStringFD = newData.allNumbers[numberFD]
-//        //val numberStringFD = data.koreanNumbers[numberFD]
+//        //val numberStringFD = oldData.koreanNumbers[numberFD]
 //
 //        val resultInt = numberFD + numberLD
 //        val resultString = numberStringFD.toString() + " " + numberStringLD.toString()
 
-        return newData.dataList[0]//numberLD]
+        return newData.dataList.numbers[numberLD]
     }
 
 
     private fun getRandomHanja(): OldData.HanjaRecord {
-        val list = data.hanjaNew
+        val list = oldData.hanjaNew
         return list[Random.nextInt(0, list.size)]
     }
 }

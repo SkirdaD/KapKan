@@ -6,8 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
+import com.example.kapkan.Data.OldData.OldData
 import com.example.kapkan.Data.Retrofit.NewData
-import com.example.kapkan.Data.Retrofit.NumberData
+import com.example.kapkan.Data.Retrofit.NumbersData
 import com.example.kapkan.R
 import com.example.kapkan.Values
 
@@ -23,8 +24,9 @@ class GameFragment : Fragment() {
         }
     }
 
-    val kapkanLiveData = MutableLiveData<List<NumberData>>()
-    val data = NewData()
+    val oldData = OldData()
+    val newData = NewData(oldData)
+    val kapkanLiveData = MutableLiveData<NumbersData>()
 
     private lateinit var gameOptions: Values.GameOptions
 
@@ -34,7 +36,7 @@ class GameFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         gameOptions = Values.GameOptions.valueOf(
-            arguments?.getString("gameOption") ?: Values.GameOptions.OPTION_1.name
+            arguments?.getString("gameOption") ?: Values.GameOptions.HANJA_TO_TRANSCRIPTION.name
         )
 
         return inflater.inflate(R.layout.game_fragment, container, false)
@@ -44,15 +46,17 @@ class GameFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val widgets = GameFragmentWidgetHolder(view)
-        data.fetchNumbersData(kapkanLiveData)
+
+        newData.fetchNumbersData(kapkanLiveData)
 
         kapkanLiveData.observe(viewLifecycleOwner) {
 
             widgets.progressBar.visibility = View.GONE
 
-            data.dataList = it
 
-            val logicHolder = GameFragmentLogicHolder(widgets, gameOptions)
+            newData.dataList = it
+
+            val logicHolder = GameFragmentLogicHolder(widgets, gameOptions, newData, oldData)
 
             logicHolder.initTextView()
 
@@ -62,6 +66,5 @@ class GameFragment : Fragment() {
 
             widgets.fabButton.setOnClickListener(logicHolder::fabButtonClickListener)
         }
-
     }
 }

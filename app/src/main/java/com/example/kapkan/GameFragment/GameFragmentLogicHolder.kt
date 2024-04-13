@@ -1,6 +1,8 @@
 package com.example.kapkan.GameFragment
 
 import android.view.View
+import com.example.kapkan.Data.OldData.OldData
+import com.example.kapkan.Data.Retrofit.NewData
 import com.example.kapkan.Values
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -10,9 +12,11 @@ import kotlinx.coroutines.launch
 class GameFragmentLogicHolder(
     private val widgets: GameFragmentWidgetHolder,
     gameOption: Values.GameOptions,
+    newData: NewData,
+    oldData: OldData
 ) {
 
-    private val stateHolder = StateHolder(gameOption)
+    private val stateHolder = StateHolder(gameOption, newData, oldData)
 
     fun initTextView() {
         widgets.hanjaTextView.text = when (stateHolder.state) {
