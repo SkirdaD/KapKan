@@ -1,0 +1,14 @@
+{"numbers":[
+    {"digit":0, "nativeKoreanName":"공", "sinoKoreanName":"공"},    
+    {"digit":1, "nativeKoreanName":"하나", "sinoKoreanName":"일"},
+    {"digit":2, "nativeKoreanName":"둘", "sinoKoreanName":"이"},
+    {"digit":3, "nativeKoreanName":"셋", "sinoKoreanName":"삼"},
+    {"digit":4, "nativeKoreanName":"넷", "sinoKoreanName":"사"},
+    {"digit":5, "nativeKoreanName":"다섯", "sinoKoreanName":"오"},
+    {"digit":6, "nativeKoreanName":"여섯", "sinoKoreanName":"육"},
+    {"digit":7, "nativeKoreanName":"일곱", "sinoKoreanName":"칠"},
+    {"digit":8, "nativeKoreanName":"아홉", "sinoKoreanName":"팔"},
+    {"digit":9, "nativeKoreanName":"열", "sinoKoreanName":"구"},
+    {"digit":10, "nativeKoreanName":"스물", "sinoKoreanName":"십"}
+]
+}
