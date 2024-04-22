@@ -4,7 +4,7 @@ class Values {
     companion object {
         const val HINT_TIMEOUT: Long = 5000
         const val ERROR_MESSAGE = "that's not right!"
-        const val BASE_URL = "https://raw.githubusercontent.com/russabit/"
+        const val BASE_URL = "https://raw.githubusercontent.com/SkirdaD/"
     }
 
     enum class GameOptions(var interpretation: String) {

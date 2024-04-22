@@ -1,8 +1,8 @@
 package com.example.kapkan.gameFragment
 
 import com.example.kapkan.Values
-import com.example.kapkan.data.OldData
 import com.example.kapkan.data.NewData
+import com.example.kapkan.data.OldData
 import kotlin.random.Random
 
 class StateHolder(
@@ -42,7 +42,7 @@ class StateHolder(
             newData.dataList.numbers[firstDigit].nativeKoreanName
 
 
-        val secondDigit = Random.nextInt(1, 10)
+        val secondDigit = Random.nextInt(10)
         val secondDigitHanja = newData.dataList.numbers[secondDigit].nativeKoreanName
 
 
