@@ -1,7 +1,9 @@
-package com.example.kapkan.GameFragment
+package com.example.kapkan.gameFragment
 
 import android.view.View
 import com.example.kapkan.Values
+import com.example.kapkan.data.NewData
+import com.example.kapkan.data.OldData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -10,16 +12,18 @@ import kotlinx.coroutines.launch
 class GameFragmentLogicHolder(
     private val widgets: GameFragmentWidgetHolder,
     gameOption: Values.GameOptions,
+    newData: NewData,
+    oldData: OldData
 ) {
 
-    private val stateHolder = StateHolder(gameOption)
+    private val stateHolder = StateHolder(gameOption, newData, oldData)
 
     fun initTextView() {
         widgets.hanjaTextView.text = when (stateHolder.state) {
             StateHolder.Type.HANJA -> stateHolder.hanja.syllable
             StateHolder.Type.HANJA_SOUND -> stateHolder.hanja.koreanSound
             StateHolder.Type.NATIVE_NUMBERS -> stateHolder.number.first.toString()
-            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.second
+            StateHolder.Type.NUMBER_SOUND -> stateHolder.number.second.trim()//nativeKoreanName.trim()//second
         }
     }
 
@@ -105,7 +109,8 @@ class GameFragmentLogicHolder(
         resetHints()
         initTextView()
     }
-    private fun updateTask(){
+
+    private fun updateTask() {
         when (stateHolder.state) {
             StateHolder.Type.HANJA -> stateHolder.updateHanja()
             StateHolder.Type.HANJA_SOUND -> stateHolder.updateHanja()
@@ -168,6 +173,6 @@ class GameFragmentLogicHolder(
     }
 
     private fun showNumberSound() {
-        widgets.hanjaTextView.text = stateHolder.number.second
+        widgets.hanjaTextView.text = stateHolder.number.second.trim()
     }
 }

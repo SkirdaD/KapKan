@@ -93,6 +93,26 @@
         app:layout_constraintTop_toTopOf="@+id/submit_button"
         app:srcCompat="@android:drawable/ic_menu_help" />
 
+    <FrameLayout
+        android:id="@+id/layout_for_progressBar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="#80000000">
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:indeterminate="true"/>
+    </FrameLayout>
+
     <!-- <Button
          android:id="@+id/reverseToHanja"
          android:layout_width="wrap_content"

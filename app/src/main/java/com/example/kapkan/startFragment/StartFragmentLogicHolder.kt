@@ -1,11 +1,11 @@
-package com.example.kapkan.StartFragment
+package com.example.kapkan.startFragment
 
 import android.content.Context
 import android.view.View
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kapkan.GameFragment.GameFragment
+import com.example.kapkan.gameFragment.GameFragment
 import com.example.kapkan.R
 import com.example.kapkan.Values
 
@@ -40,7 +40,7 @@ class StartFragmentLogicHolder(
     fun showGameFragment(gameOption: Values.GameOptions) {
         fragmentManager
             .beginTransaction()
-            .replace(R.id.fragment, GameFragment(gameOption))
+            .replace(R.id.fragment, GameFragment.newInstance(gameOption))
             .addToBackStack(null)
             .commit()
     }

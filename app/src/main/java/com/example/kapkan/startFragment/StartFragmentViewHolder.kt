@@ -1,4 +1,4 @@
-package com.example.kapkan.StartFragment
+package com.example.kapkan.startFragment
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

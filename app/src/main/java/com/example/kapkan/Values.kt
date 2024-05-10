@@ -4,12 +4,13 @@ class Values {
     companion object {
         const val HINT_TIMEOUT: Long = 5000
         const val ERROR_MESSAGE = "that's not right!"
+        const val BASE_URL = "https://raw.githubusercontent.com/SkirdaD/"
     }
 
     enum class GameOptions(var interpretation: String) {
-        OPTION_1("Hanja To Transcription"),
-        OPTION_2("Transcription To Hanja"),
-        OPTION_3("Number To Transcription"),
-        OPTION_4("Transcription To Number")
+        HANJA_TO_TRANSCRIPTION("Hanja To Transcription"),
+        TRANSCRIPTION_TO_HANJA("Transcription To Hanja"),
+        NUMBER_TO_TRANSCRIPTION("Number To Transcription"),
+        TRANSCRIPTION_NUMBER("Transcription To Number")
     }
 }

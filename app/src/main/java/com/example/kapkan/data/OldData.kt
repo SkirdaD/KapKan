@@ -1,6 +1,6 @@
-package com.example.kapkan.Data
+package com.example.kapkan.data
 
-class Data {
+class OldData {
 
     data class HanjaRecord(
         val syllable: Hanja,
@@ -24,6 +24,11 @@ class Data {
         SIZE, COLORS, RELATIVES, COUNTRIES, SHAPES, LANGUAGES, DIRECTIONS, SENSES, BODYPARTS, ORGANS,
         CITIES, SEOUL, MOUNTAINS
     }
+
+    val n1 = DigitData(9, "ff", "fff")
+    val n2 = DigitData(8, "dd", "ddd")
+    val numbers = NumbersData(arrayListOf(n1, n2))
+
 
     val koreanNumbers = mapOf(
         1 to "하나",
@@ -50,54 +55,47 @@ class Data {
         100000000 to "잘",
         //1000000000000 to "울"
     )
-    /*
-        val hanja11 = arrayListOf(
-            HanjaRecord("中", "중"),
-            HanjaRecord("山", "산"),
-            HanjaRecord("門", "문"),
-            HanjaRecord("入", "입"),
-            HanjaRecord("出", "출"),
-            HanjaRecord("口", "구"),
-            HanjaRecord("上", "상"),
-            HanjaRecord("下", "하"),
-            HanjaRecord("日", "일"),
-            HanjaRecord("月", "월"),
-            HanjaRecord("年", "년"),
-            HanjaRecord("內", "내"),
-            HanjaRecord("外", "외"),
-            HanjaRecord("人", "인"),
-            HanjaRecord("子", "자"),
-            HanjaRecord("父", "부"),
-            HanjaRecord("母", "모"),
-            HanjaRecord("男", "남"),
-            HanjaRecord("女", "여"),
-            HanjaRecord("一", "일"),
-            HanjaRecord("二", "이"),
-            HanjaRecord("三", "삼"),
-            HanjaRecord("四", "사"),
-            HanjaRecord("五", "오"),
-            HanjaRecord("六", "육"),
-            HanjaRecord("七", "칠"),
-            HanjaRecord("八", "팔"),
-            HanjaRecord("九", "구"),
-            HanjaRecord("十", "십"),
-            HanjaRecord("東", "동"),
-            HanjaRecord("西", "서"),
-            HanjaRecord("北", "북"),
-            HanjaRecord("南", "남"),
-            HanjaRecord("王", "왕"),
-            HanjaRecord("天", "천"),
-            HanjaRecord("手", "수"),
-            HanjaRecord("字", "자"),
-            HanjaRecord("員", "원"),
-        )*/
 
-    /*val hanja12 = arrayListOf(
-
-        */
-    /*    val hanjaDoubles = arrayListOf(
-
-        )*/
+    val hanja11 = arrayListOf(
+        HanjaRecord("中", "중"),
+        HanjaRecord("山", "산"),
+        HanjaRecord("門", "문"),
+        HanjaRecord("入", "입"),
+        HanjaRecord("出", "출"),
+        HanjaRecord("口", "구"),
+        HanjaRecord("上", "상"),
+        HanjaRecord("下", "하"),
+        HanjaRecord("日", "일"),
+        HanjaRecord("月", "월"),
+        HanjaRecord("年", "년"),
+        HanjaRecord("內", "내"),
+        HanjaRecord("外", "외"),
+        HanjaRecord("人", "인"),
+        HanjaRecord("子", "자"),
+        HanjaRecord("父", "부"),
+        HanjaRecord("母", "모"),
+        HanjaRecord("男", "남"),
+        HanjaRecord("女", "여"),
+        HanjaRecord("一", "일"),
+        HanjaRecord("二", "이"),
+        HanjaRecord("三", "삼"),
+        HanjaRecord("四", "사"),
+        HanjaRecord("五", "오"),
+        HanjaRecord("六", "육"),
+        HanjaRecord("七", "칠"),
+        HanjaRecord("八", "팔"),
+        HanjaRecord("九", "구"),
+        HanjaRecord("十", "십"),
+        HanjaRecord("東", "동"),
+        HanjaRecord("西", "서"),
+        HanjaRecord("北", "북"),
+        HanjaRecord("南", "남"),
+        HanjaRecord("王", "왕"),
+        HanjaRecord("天", "천"),
+        HanjaRecord("手", "수"),
+        HanjaRecord("字", "자"),
+        HanjaRecord("員", "원"),
+    )
 
     val hanjaNew = arrayListOf(
         HanjaRecord("韓", "한"),
@@ -219,8 +217,3 @@ class Data {
         HanjaRecord("音", "음", "소리", listOf("звук", "новости", "произношение", "разговор")),
     )
 }
-
-typealias Hangul = String
-typealias Hanja = String
-typealias Russian = String
-typealias English = String

@@ -1,7 +1,8 @@
-package com.example.kapkan.GameFragment
+package com.example.kapkan.gameFragment
 
 import android.view.View
 import android.widget.Button
+import android.widget.FrameLayout
 import android.widget.TextView
 import com.example.kapkan.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -16,4 +17,5 @@ class GameFragmentWidgetHolder(view: View) {
     val answerEditText = view.findViewById<TextInputLayout>(R.id.answer_edit_text)
     val hanjaTextView = view.findViewById<TextView>(R.id.written_number_text_view)
     val numberOfWinsTextView = view.findViewById<TextView>(R.id.number_of_wins)
+    val progressBar = view.findViewById<FrameLayout>(R.id.layout_for_progressBar)
 }
